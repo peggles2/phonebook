@@ -10,6 +10,8 @@ gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 
+gem 'rails_12factor'
+
 #making bootstap forms easy
 gem 'bootstrap_form'
 
