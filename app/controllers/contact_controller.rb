@@ -13,7 +13,7 @@ class ContactController < ApplicationController
     if @contact.save
       respond_to do |format|
         flash[:success] =  "Your contact was successfully saved"
-        format.html { redirect_to "/contact/new_contact" }
+        format.html { redirect_to "/contact/show_contacts"}
       end
     end 
   end
@@ -25,9 +25,16 @@ class ContactController < ApplicationController
   end
 
   def delete_contact
-    Contact.find(params[:contact_id]).destroy
+    begin
+      Contact.find(params[:contact_id]).destroy
+      msg  =  "Your contact was successfully deleted"
+    rescue => e
+      flash[:error]   =   "Sorry there was a problem. Unable to delete your contact.  #{e}"
+      Rails.logger.error "Sorry there was an error #{e}"
+    end
     respond_to do |format|
-      format.html { redirect_to "/contact/show_contacts" }
+      flash[:success] = msg if msg.present?
+      format.html { render :template => "/contact/show_contacts" }
     end
   end
 

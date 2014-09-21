@@ -1,3 +1,8 @@
+<% if flash[:success].present? %>
+  <%= render :partial => "success", :locals => {:success => flash[:success]} %>
+
+<% end %>
+
 <div class="container-fluid" id="show_contacts">
   <div class="row-fluid">
     <div class="col-md-12">
@@ -20,11 +25,21 @@
           <td><%= contact.phone_number %></td>
           <td><%= contact.address %></td>
           <td>
-            <%=button_tag "Edit", :class=>"btn edit_contact", :value=>"#{contact.id}" %>
-            <%=button_tag "Delete", :class=>"btn delete_contact", :value=>"#{contact.id}"%>
+	         <%=button_tag "Edit", :class=>"btn edit_contact", "data-id"=>"#{contact.id}", :rel=>"#{contact.id}"%>
+            <%=button_tag "Delete", :class=>"btn", "value"=>"#{contact.id}", "data-toggle" => "modal", "href"=>"#confirm_delete"%>
           </td>
         </tr>
       <% end %>
+      <tr>
+        <td colspan="5">  
+           <%= button_tag(:type => 'button', :class=>'btn') do %>
+			  <% link_to 'Add another', '/contact/new_contact' %>
+			<% end %> 
+		</td>	
+      </tr>
+      
     </table>
   <% end %>
-</div>
+
+  <%= render :partial => 'delete_contact_modal' %>
+
