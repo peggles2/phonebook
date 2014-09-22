@@ -18,6 +18,16 @@ class ContactController < ApplicationController
     end 
   end
 
+  def update_contact
+    @contact = Contact.find(params[:contact_id])
+    if @contact.update_attributes(params[:error_type])
+      respond_to do |format|
+        flash[:success] = "Your contact was successfully updated"
+        format.html { redirect_to "/contact/show_contacts"}
+      end
+    end  
+  end
+  
   def show_contact
     respond_to do |format|
       format.html { redirect_to "/contact/show_contacts" }
@@ -44,4 +54,5 @@ class ContactController < ApplicationController
   def contact_params
     params.require(:contact).permit(:first_name, :last_name, :phone_number, :address)
   end
+  
 end

@@ -10,16 +10,6 @@ When(/^I fill out the form with the folliwng attributes:$/) do |table|
   fill_in('contact_last_name',    :with => criteria["Last name"])
   fill_in('contact_phone_number', :with => criteria["Phone number"])
   fill_in('contact_address',      :with => criteria["Address"])
-  click_button("Save")
-end
-
-When /^I fill contact form$/ do
-  visit contact_form_path
-  fill_in('contact_visitor_name', :with => "John")
-  fill_in('contact_visitor_email', :with => "john@mail.me")
-  fill_in('contact_subject', :with => "Hello")
-  fill_in('contact_message', :with => "Great post! Bye.")
-  click_button("Send message")
 end
 
 When(/^I click the "(.*?)" button$/) do |arg1|
@@ -35,3 +25,7 @@ Then(/^I see all the contacts$/) do
   Contact.all
 end
 
+Given(/^I want to delete a contact$/) do
+  page.evaluate_script('window.confirm = function() { return true; }')
+  page.should have_content("Your contact was successfully deleted")
+end
