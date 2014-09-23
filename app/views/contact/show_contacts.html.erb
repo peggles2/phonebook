@@ -4,53 +4,53 @@
 
 <div class="container-fluid" id="show_contacts">
   <div class="row-fluid">
-    <div class="col-md-12">
-      <h1>Show your contacts</h1>
+    <div class="col-md-12 show_contact_header">
+      <h3>Show your contacts</h3>
     </div>
   </div>
-  <% if Contact.all.present?  %>
-    <table class="table table-stripe">
-      <thead>
-	    <th>Last Name</th>
-        <th>First Name</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>Action</th>
-      </thead>
-      <% Contact.order('contacts.last_name ASC').all.each do |contact| %>
-        <tr>
-	      <td><%= contact.last_name %></td>
-          <td><%= contact.first_name %></td>
-          <td><%= contact.phone_number %></td>
-          <td><%= contact.address %></td>
-          <td>
-	        <%=button_tag "Edit",  :class=>"btn edit_contact", "data-id"=>"#{contact.id}", :rel=>"#{contact.id}"%>
-            <%=button_tag "Delete", :class=>"btn", "value"=>"#{contact.id}", "data-toggle" => "modal", "href"=>"#confirm_delete"%>
-          </td>
-        </tr>
-        <tr id="edit_contact_<% contact.id %>" class="hidden">
-	        <td><input type="text" name="contact[:last_name]"    class="last_name"    value="<%=contact.last_name%>" ></td>
-   
-	        <td><input type="text" name="contact[:first_name]"   class="first_name"   value="<%=contact.first_name%>" ></td>
-            <td><input type="text" name="contact[:phone_number]" class="phone_number" value="<%=contact.phone_number%>" ></td>
-            <td><input type="text" name="contact[:address]"      class="address"      value="<%=contact.address%>" ></td>
-            <td>
-	          <%=button_tag "Update",  :class=>"btn update_contact", :rel=>"#{contact.id}"%>
-              <%=button_tag "Cancel",   :class=>"btn cancel_update"  %>
-            </td>
-        </tr>
-        
+  <div class="row-fluid">
+	<div class="col-md-12">
+      <% if Contact.all.present?  %>
+        <table class="table table-stripe table-hover">
+          <thead>
+	        <th>Last Name</th>
+            <th>First Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Action</th>
+          </thead>
+          <% Contact.order('contacts.last_name ASC').all.each do |contact| %>
+            <tr>
+	          <td><%= contact.last_name %></td>
+              <td><%= contact.first_name %></td>
+              <td><%= contact.phone_number %></td>
+              <td><%= contact.address %></td>
+              <td>
+	            <%=button_tag "Edit",  :class=>"btn edit_contact", "data-id"=>"#{contact.id}", :rel=>"#{contact.id}"%>
+                <%=button_tag "Delete", :class=>"btn", "value"=>"#{contact.id}", "data-toggle" => "modal", "href"=>"#confirm_delete"%>
+              </td>
+            </tr>
+            <tr id="edit_contact_<% contact.id %>" class="hidden">
+	          <td><input type="text" name="contact[:last_name]"    class="last_name"    value="<%=contact.last_name%>" ></td> 
+	          <td><input type="text" name="contact[:first_name]"   class="first_name"   value="<%=contact.first_name%>" ></td>
+              <td><input type="text" name="contact[:phone_number]" class="phone_number" value="<%=contact.phone_number%>" ></td>
+              <td><input type="text" name="contact[:address]"      class="address col-xs-4"      value="<%=contact.address%>" ></td>
+              <td>
+	            <%=button_tag "Update",  :class=>"btn update_contact", :rel=>"#{contact.id}"%>
+                <%=button_tag "Cancel",   :class=>"btn cancel_update"  %>
+              </td>
+            </tr>
+          <% end %>
+          <tr>
+            <td colspan="5">  
+              <%= button_tag(:type => 'button', :class=>'btn') do %>
+			    <% link_to 'Add another', '/contact/new_contact' %>
+			  <% end %> 
+		    </td>	
+          </tr>  
+        </table>
       <% end %>
-      <tr>
-        <td colspan="5">  
-           <%= button_tag(:type => 'button', :class=>'btn') do %>
-			  <% link_to 'Add another', '/contact/new_contact' %>
-			<% end %> 
-		</td>	
-      </tr>
-      
-    </table>
-  <% end %>
-
+    </div>
+  </div>
   <%= render :partial => 'delete_contact_modal' %>
 

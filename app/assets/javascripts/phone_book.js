@@ -15,6 +15,11 @@ $(function() {
     });
   });  
 
+  $('#new_contact').on('click','.clear_contact', function(event){
+    event.preventDefault();	
+    $("input[type='text']").val("");
+  });
+
   $('#show_contacts').on('click', '.update_contact', function() {
     var contact_id = $(this).attr("rel");
     var data =  "id=" + contact_id + 
