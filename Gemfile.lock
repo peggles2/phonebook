@@ -171,10 +171,6 @@ DEPENDENCIES
   database_cleaner
   jbuilder (~> 2.0)
   jquery-rails
-<<<<<<< HEAD
-  json
-=======
->>>>>>> updated gemfile
   pg
   rails (= 4.1.6)
   rails_12factor
