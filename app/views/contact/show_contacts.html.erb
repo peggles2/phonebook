@@ -1,5 +1,5 @@
 <% if flash[:success].present? %>
-  <%= render :partial => "success", :locals => {:success => flash[:success]} %>
+  <%= render :partial => "success", :locals => {:success_msg => flash[:success]} %>
 <% end %>
 
 <div class="container-fluid" id="show_contacts">
