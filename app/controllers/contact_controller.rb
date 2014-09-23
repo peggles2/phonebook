@@ -23,10 +23,10 @@ class ContactController < ApplicationController
     contact_id = params[:id]
     
     @contact   = Contact.find(contact_id)
-    contact = { :first_name => params[:first_name],
-                :last_name  => params[:last_name],
-                :phone_number => params[:phone_number].to_i,
-                :address      => params[:address] }
+    contact   = { :first_name   => params[:first_name],
+                  :last_name    => params[:last_name],
+                  :phone_number => params[:phone_number],
+                  :address      => params[:address] }
     if @contact.update(contact)
       respond_to do |format|
         flash[:success] = "Your contact was successfully updated"
