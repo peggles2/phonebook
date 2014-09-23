@@ -11,16 +11,16 @@
   <% if Contact.all.present?  %>
     <table class="table table-stripe">
       <thead>
+	    <th>Last Name</th>
         <th>First Name</th>
-        <th>Last Name</th>
         <th>Phone</th>
         <th>Address</th>
         <th>Action</th>
       </thead>
-      <% Contact.all.each do |contact| %>
+      <% Contact.order('contacts.last_name ASC').all.each do |contact| %>
         <tr>
+	      <td><%= contact.last_name %></td>
           <td><%= contact.first_name %></td>
-          <td><%= contact.last_name %></td>
           <td><%= contact.phone_number %></td>
           <td><%= contact.address %></td>
           <td>
@@ -29,8 +29,9 @@
           </td>
         </tr>
         <tr id="edit_contact_<% contact.id %>" class="hidden">
+	        <td><input type="text" name="contact[:last_name]"    class="last_name"    value="<%=contact.last_name%>" ></td>
+   
 	        <td><input type="text" name="contact[:first_name]"   class="first_name"   value="<%=contact.first_name%>" ></td>
-            <td><input type="text" name="contact[:last_name]"    class="last_name"    value="<%=contact.last_name%>" ></td>
             <td><input type="text" name="contact[:phone_number]" class="phone_number" value="<%=contact.phone_number%>" ></td>
             <td><input type="text" name="contact[:address]"      class="address"      value="<%=contact.address%>" ></td>
             <td>
