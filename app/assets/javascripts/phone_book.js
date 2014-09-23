@@ -14,6 +14,27 @@ $(function() {
     });
   });  
 
+  $('#show_contacts').on('click', '.update_contact', function() {
+    var contact_id = $(this).attr("rel");
+    var data =  "id=" + contact_id + 
+                 ";first_name="  +  $(this).closest('tr').find('.first_name').val()   + 
+                 ";last_name="   +  $(this).closest('tr').find('.last_name').val()    +
+                 ";phone_number=" +  $(this).closest('tr').find('.phone_number').val() + 
+                 ";address="      +  $(this).closest('tr').find('.address').val()
+                   
+
+    $.ajax({
+      url:  '/contact/update_contact',
+      type: "post",
+      data:  data,
+      success:function(data){
+            location.reload();
+      },
+      error:function(d,x,s){
+      }
+    });
+  });
+
   $('#show_contacts').on('click', '.cancel_update', function() {
 	$(this).closest('tr').hide()
     $(this).closest('tr').prev().show();	

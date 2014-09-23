@@ -19,13 +19,22 @@ class ContactController < ApplicationController
   end
 
   def update_contact
-    @contact = Contact.find(params[:contact_id])
-    if @contact.update_attributes(params[:error_type])
+    params.permit!
+    contact_id = params[:id]
+    
+    @contact   = Contact.find(contact_id)
+    contact = { :first_name => params[:first_name],
+                :last_name  => params[:last_name],
+                :phone_number => params[:phone_number].to_i,
+                :address      => params[:address] }
+    if @contact.update(contact)
       respond_to do |format|
         flash[:success] = "Your contact was successfully updated"
         format.html { redirect_to "/contact/show_contacts"}
       end
-    end  
+    else 
+        flash[:error] = "Your contact was not saved"
+    end 
   end
   
   def show_contact

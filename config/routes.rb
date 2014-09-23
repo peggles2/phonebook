@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   match "/contacts",             :to => "contact#create_contact", :via => [:post]
   match "/contact/show_contacts", :to => "contact#show_contacts", :via => [:get]
   match "/contact/delete_contact", :to => "contact#delete_contact", :via => [:post]
+  match "/contact/update_contact", :to => "contact#update_contact", :via => [:post]
 end
