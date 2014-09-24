@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-confirmation
+//= require jquery.turbolinks
 //= require_tree .

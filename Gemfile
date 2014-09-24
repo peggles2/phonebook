@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 
+gem 'jquery-turbolinks'
+
 # Use postgres the database for Active Record
 gem 'pg'
 
