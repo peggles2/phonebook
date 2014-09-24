@@ -10,7 +10,7 @@ $(function() {
 	    location.reload();
       },
       error:function(d,x,s){
-	    alert("There was a problem.");
+	    location.reload();
       }
     });
   });  

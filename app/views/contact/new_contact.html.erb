@@ -13,10 +13,10 @@
   <% end %>
   <%= bootstrap_form_for(@contact) do |f| %>
     <div class="row-fluid">
-      <div class="col-md-2"><%= f.text_field   :first_name%></div>
-      <div class="col-md-2"><%= f.text_field   :last_name%></div>
-      <div class="col-md-2"><%= f.text_field   :phone_number%></div>
-      <div class="col-md-2"><%= f.text_field   :address, :class=>"col-xs-4"%></div>
+      <div class="col-md-2"><%= f.text_field   :first_name, :placeholder => "Enter First name"%></div>
+      <div class="col-md-2"><%= f.text_field   :last_name, :placeholder => "Enter Last name"%></div>
+      <div class="col-md-2"><%= f.text_field   :phone_number, :placeholder => "(xxx) xxx-xxxx"%></div>
+      <div class="col-md-2"><%= f.text_field   :address, :class=>"col-xs-4", :placeholder => "Enter Address"%></div>
     </div>
     <div class="row-fluid">
       <div class="col-md-12">

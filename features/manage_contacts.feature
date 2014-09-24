@@ -18,8 +18,3 @@ Feature: Manage Contacts
     Given I want to get all contacts
     When I go to  "Show your contacts page"
     Then I see all the contacts 
-
-    Scenario: I am on "Show your contacts" page
-    Given I want to delete a contact
-    When I click the "Delete" button
-    Then I should see "Your contact was successfully deleted"

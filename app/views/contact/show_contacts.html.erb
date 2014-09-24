@@ -1,6 +1,10 @@
 <% if flash[:success].present? %>
   <%= render :partial => "success", :locals => {:success_msg => flash[:success]} %>
 <% end %>
+<% if flash[:error].present? %>
+  <%= render :partial => "error", :locals => {:error_msg => flash[:error]} %>
+<% end %>
+
 
 <div class="container-fluid" id="show_contacts">
   <div class="row-fluid">
@@ -11,7 +15,7 @@
   <div class="row-fluid">
 	<div class="col-md-12">
       <% if Contact.all.present?  %>
-        <table class="table table-stripe table-hover">
+        <table class="contacts_table table table-stripe table-hover">
           <thead>
 	        <th>Last Name</th>
             <th>First Name</th>
@@ -19,6 +23,7 @@
             <th>Address</th>
             <th>Action</th>
           </thead>
+          <tbody>
           <% Contact.order('contacts.last_name ASC').all.each do |contact| %>
             <tr>
 	          <td><%= contact.last_name %></td>
@@ -47,7 +52,8 @@
 			    <% link_to 'Add another', '/contact/new_contact' %>
 			  <% end %> 
 		    </td>	
-          </tr>  
+          </tr>
+          </tbody>  
         </table>
       <% end %>
     </div>

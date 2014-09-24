@@ -24,8 +24,3 @@ end
 Then(/^I see all the contacts$/) do
   Contact.all
 end
-
-Given(/^I want to delete a contact$/) do
-  page.evaluate_script('window.confirm = function() { return true; }')
-  page.should have_content("Your contact was successfully deleted")
-end

@@ -10,12 +10,16 @@ class ContactController < ApplicationController
   def create_contact
     params.permit!
     @contact = Contact.new(params[:contact])
-    if @contact.save
       respond_to do |format|
-        flash[:success] =  "Your contact was successfully saved"
-        format.html { redirect_to "/contact/show_contacts"}
-      end
-    end 
+        if @contact.save
+          flash[:success] =  "Your contact was successfully saved"
+          format.html { redirect_to "/contact/show_contacts"}
+          
+        else
+          flash[:error] = "Your contact was not saved, please make sure you add a First name, Last name and Phone number."
+          format.html { redirect_to "/contact/new_contact"}
+        end
+      end 
   end
 
   def update_contact
@@ -27,14 +31,17 @@ class ContactController < ApplicationController
                   :last_name    => params[:last_name],
                   :phone_number => params[:phone_number],
                   :address      => params[:address] }
-    if @contact.update(contact)
-      respond_to do |format|
+    
+    respond_to do |format|
+      if @contact.update(contact)
         flash[:success] = "Your contact was successfully updated"
-        format.html { redirect_to "/contact/show_contacts"}
-      end
-    else 
+      else 
+        Rails.logger.debug "within else"
         flash[:error] = "Your contact was not saved"
-    end 
+      end 
+      format.html { redirect_to "/contact/show_contacts"}  
+      
+    end
   end
   
   def show_contact
