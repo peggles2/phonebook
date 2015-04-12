@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
+gem 'devise',   '3.3.0'        # ActiveAdmin 'soft' dependency
+gem 'activeadmin',     github: 'activeadmin'
+gem 'bootstrap-sass',  '3.3.3'
 
 gem 'jquery-turbolinks'
 
